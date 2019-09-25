@@ -11,12 +11,14 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
-
 
 @RunWith(SpringRunner.class)
 public class ClickbusApplicationTests {
@@ -30,6 +32,28 @@ public class ClickbusApplicationTests {
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
+    }
+
+    /**
+     * Test of index method, with returns all the Places
+     * in the database.
+     */
+    @Test
+    public void testGetAllPlaces() {
+        // Mocks the all places list
+        List<Place> mockPlaces = new ArrayList<>();
+        for (int i = 1; i <= 4; i++) {
+            Place place = new Place();
+            place.setId(i);
+            place.setName("Mock " + i);
+            place.setSlug("mock-slug-" + i);
+            mockPlaces.add(place);
+        }
+        when(placeRepository.findAll()).thenReturn(mockPlaces);
+        Iterable<Place> places = placeController.index();
+
+        // Checks if the list has some place in the mock
+        assertThat(places, hasItem(mockPlaces.get(1)));
     }
 
     /**
