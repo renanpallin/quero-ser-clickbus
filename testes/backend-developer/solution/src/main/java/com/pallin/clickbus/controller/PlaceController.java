@@ -19,8 +19,11 @@ public class PlaceController {
      * @return all places
      */
     @GetMapping()
-    public Iterable<Place> index() {
-        return repository.findAll();
+    public Iterable<Place> index(@RequestParam(required = false) String query) {
+        if (query == null)
+            return repository.findAll();
+
+        return repository.getByName(query);
     }
 
     /**

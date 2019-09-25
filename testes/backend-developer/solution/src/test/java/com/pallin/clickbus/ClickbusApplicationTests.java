@@ -50,7 +50,7 @@ public class ClickbusApplicationTests {
             mockPlaces.add(place);
         }
         when(placeRepository.findAll()).thenReturn(mockPlaces);
-        Iterable<Place> places = placeController.index();
+        Iterable<Place> places = placeController.index(null);
 
         // Checks if the list has some place in the mock
         assertThat(places, hasItem(mockPlaces.get(1)));
@@ -136,7 +136,7 @@ public class ClickbusApplicationTests {
         placeController.destroy(savedPlace);
 
         // Get all places
-        Iterable<Place> places = placeController.index();
+        Iterable<Place> places = placeController.index(null);
 
         // Checks if the deleted place don't return
         assertThat(places, not(hasItem(savedPlaceToDelete)));
