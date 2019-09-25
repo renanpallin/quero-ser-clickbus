@@ -94,4 +94,51 @@ public class ClickbusApplicationTests {
         assertThat(savedPlace, is(equalTo(savedPlaceMock)));
     }
 
+    /**
+     * Test for deleting a place
+     */
+    @Test
+    public void testDeleteAPlace() {
+        // Create a place to save and delete
+        Place placeToDelete = new Place();
+        placeToDelete.setId(1L);
+        placeToDelete.setName("Mock To Delete");
+        placeToDelete.setSlug("mock-slug-to-delete");
+
+        // Mocks the response for saving the place
+        Place savedPlaceToDelete = new Place();
+        savedPlaceToDelete.setId(1L);
+        savedPlaceToDelete.setName("Mock To Delete");
+        savedPlaceToDelete.setSlug("mock-slug-to-delete");
+        LocalDateTime now = LocalDateTime.now();
+        savedPlaceToDelete.setCreatedAt(now);
+        savedPlaceToDelete.setUpdatedAt(now);
+
+        // Mocks the all places list
+        List<Place> mockPlaces = new ArrayList<>();
+        for (int i = 1; i <= 4; i++) {
+            Place place = new Place();
+            place.setId(i);
+            place.setName("Mock " + i);
+            place.setSlug("mock-slug-" + i);
+            mockPlaces.add(place);
+        }
+
+        when(placeRepository.findAll()).thenReturn(mockPlaces);
+        when(placeRepository.save(placeToDelete)).thenReturn(savedPlaceToDelete);
+
+        Place savedPlace = placeController.create(placeToDelete);
+
+        // Checks if place was saved correctly
+        assertThat(savedPlace, is(equalTo(savedPlaceToDelete)));
+
+        // Delete the just created place
+        placeController.destroy(savedPlace);
+
+        // Get all places
+        Iterable<Place> places = placeController.index();
+
+        // Checks if the deleted place don't return
+        assertThat(places, not(hasItem(savedPlaceToDelete)));
+    }
 }
