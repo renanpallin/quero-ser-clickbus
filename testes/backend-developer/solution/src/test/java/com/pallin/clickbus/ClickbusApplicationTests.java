@@ -11,13 +11,13 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -68,4 +68,30 @@ public class ClickbusApplicationTests {
         Place place = placeController.showById(mockPlace).getBody();
         assertThat(place.getId(), is(1L));
     }
+
+    /**
+     * Test for creating a place
+     */
+    @Test
+    public void testCreateAPlace() {
+        // Place to send as request
+        Place place = new Place();
+        place.setName("Mock ");
+        place.setSlug("mock-slug");
+
+        // Mocks the response for saving the place
+        Place savedPlaceMock = new Place();
+        place.setId(1L);
+        place.setName("Mock ");
+        place.setSlug("mock-slug");
+        LocalDateTime now = LocalDateTime.now();
+        place.setCreatedAt(now);
+        place.setUpdatedAt(now);
+
+        when(placeRepository.save(place)).thenReturn(savedPlaceMock);
+
+        Place savedPlace = placeController.create(place);
+        assertThat(savedPlace, is(equalTo(savedPlaceMock)));
+    }
+
 }
