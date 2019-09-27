@@ -33,15 +33,15 @@ The `src/test` directory contains code for automated tests for this application.
 ### Place
 Represents a place and have the following fields:
 
-| Field     | Java Type     | JSON Type | Description                         |
-|-----------|---------------|-----------|-------------------------------------|
-| id        | Long          | Number    | Unique identifier and primary key   |
-| name      | String        | String    | Name of the place                   |
-| slug      | String        | String    | Place's slug (E.g. my-awsome-place) |
-| city      | String        | String    | Place's city                        |
-| state     | String        | String    | Place's state                       |
-| createdAt | LocalDateTime | String    | Place's creation time               |
-| updatedAt | LocalDateTime | String    | Place's last updated time           |
+| Field     | Java Type     | JSON Type | Description                          |
+|-----------|---------------|-----------|--------------------------------------|
+| id        | Long          | Number    | Unique identifier and primary key    |
+| name      | String        | String    | Name of the place                    |
+| slug      | String        | String    | Place's slug (E.g. my-awesome-place) |
+| city      | String        | String    | Place's city                         |
+| state     | String        | String    | Place's state                        |
+| createdAt | LocalDateTime | String    | Place's creation time                |
+| updatedAt | LocalDateTime | String    | Place's last updated time            |
 
 ## Endpoints
 The project follow the REST convention with all the requests and responses in JSON.
