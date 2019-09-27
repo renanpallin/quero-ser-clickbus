@@ -27,7 +27,7 @@ Run the following command to start two docker containers, one for mysql database
 The app should now be running at port 8080 and you can perform some http request.
 
 ## Tests 
-@todo
+The `src/test` directory contains code for automated tests for this application. 
 
 ## Models
 ### Place
