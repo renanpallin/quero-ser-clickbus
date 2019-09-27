@@ -1,8 +1,31 @@
 # Project
 This is a repository to make me a Click Bus Back End Developer
 
+## Dependencies
+This project uses Gradle to manage code dependencies.
+ - Spring Boot
+ - Spring Data
+ - Hibernate
+ - Mysql
+ - Java 8
+ - Docker (to use containers)
+ - Docker Compose (to use containers)
+
 ## Running the project
-@todo
+Once the dependencies is installed, it is possible to run the project.
+
+First, build the project with the following command in the root directory:
+
+`./gradlew build`
+
+This will generate the jar artifact inside `build/libs` directory.
+
+Run the following command to start two docker containers, one for mysql database and another for the application:
+
+`docker-compose up` 
+
+The app should now be running at port 8080 and you can perform some http request.
+
 ## Tests 
 @todo
 
@@ -35,15 +58,6 @@ The project follow the REST convention with all the requests and responses in JS
 This is a Spring Boot application with uses MySql database.
 It is possible to identify some well known design patterns, like MVC and Repository.
 Since REST convention was used, the http statuses on the responses has its meaning.
-
-## Dependencies
-This project uses Gradle to manage code dependencies.
- - Spring Boot
- - Spring Data
- - Hibernate
- - Mysql
- - Docker (to use containers)
- - Docker Compose (to use containers)
 
 ## Author
 Renan Pallin \<renanpallin@gmail.com\>
