@@ -16,7 +16,7 @@ Once the dependencies is installed, it is possible to run the project.
 
 First, build the project with the following command in the root directory:
 
-`./gradlew build`
+`gradle build`
 
 This will generate the jar artifact inside `build/libs` directory.
 
