@@ -48,7 +48,7 @@ The project follow the REST convention with all the requests and responses in JS
 
 | Method    | Endpoint                  | Description                                                                                                                                    |
 |-----------|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| GET       | /place[?query=nameFilter] | List all places. Accepts an optional `query` param with filters places by name                                                                 |
+| GET       | /place[?query=nameFilter] | List all places. Accepts an optional `query` param witch filters places by name                                                                |
 | GET       | /place/:id                | Returns a place by given :id. 404 response code is given when place not found                                                                  |
 | POST      | /place                    | Create a place with given body json. E.g.: {     "name": "Click Bus",     "slug": "click-bus",     "city": "São paulo",     "state": "Sampa" } |
 | PUT       | /place/:id                | Replace the existing place with new values provided in body.                                                                                   |
